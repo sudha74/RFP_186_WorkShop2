@@ -1,35 +1,53 @@
 package com.bridgelaz.Hospital;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Hospital {
-    enum HospitalName{
 
-    }
-    ArrayList<PatientDetails>list=new ArrayList<>();
-    Scanner scanner=new Scanner(System.in);
+    String hospitalName;
+    static HashMap<String, Hospital> map = new HashMap<>();
+    Scanner scanner = new Scanner(System.in);
+    ArrayList<Patient> list = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "Hospital{" +
-                "list=" + list +
-                '}';
+
+    public Hospital(String hospitalName) {
+        this.hospitalName = hospitalName;
     }
-    void addOncology(){
-        PatientDetails patientDetails=new PatientDetails();
-        System.out.println("Enter name");
-       patientDetails.setName(scanner.next());
+
+    static Hospital createNewHospital(String hospitalName) {
+        Hospital hospital = new Hospital(hospitalName);
+        map.put(hospitalName, hospital);
+        return hospital;
+    }
+
+    public <patient> patient getUserInput() {
+        Patient patient = new Patient();
+        System.out.println("Enter Department");
+        String Department = scanner.next();
+        patient.selectDepartment();
+        System.out.println("Enter Name");
+        patient.setName(scanner.next());
         System.out.println("Enter age");
-        patientDetails.setAge(scanner.nextInt());
+        patient.setAge(scanner.nextInt());
         System.out.println("Enter phoneNumber");
-        patientDetails.setPhoneNumber(scanner.nextLong());
-        System.out.println("Enter PatientNmae");
-        patientDetails.setPatientName(scanner.next());
+        patient.setPhoneNumber(scanner.nextLong());
         System.out.println("Enter city");
-        patientDetails.setCity(scanner.next());
+        patient.setCity(scanner.next());
         System.out.println("Enter state");
-        patientDetails.setState(scanner.next());
-       list.add(patientDetails);
+        patient.setState(scanner.next());
+        return (patient) patient;
+    }
+
+    public void addPatient() {
+        Patient patient = getUserInput();
+        list.add(patient);
+        System.out.println(patient);
+        System.out.println("Patient Updated Successfully");
     }
 }
+
+
+
+

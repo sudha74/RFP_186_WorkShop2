@@ -5,17 +5,19 @@ import java.util.Scanner;
 
 public class HospitalMain {
     public static void main(String[] args) {
-        HashMap<String, PatientDetails> map=new HashMap<>();
-        Scanner scanner=new Scanner(System.in);
-        boolean exit=true;
-        while (exit){
-            PatientDetails pd=new PatientDetails();
-            System.out.println("Enter the Hospital Name");
-            String hospitalName=scanner.next().toLowerCase();
-            if (map.containsKey(hospitalName)){
-                System.out.println("Hospital already exist");
-            }else {
-                map.put(hospitalName,pd);
+        System.out.println("Enter Hospital Name");
+        Scanner scanner = new Scanner(System.in);
+        Hospital hospital = Hospital.createNewHospital(scanner.next());
+        boolean Terminate = false;
+        while (!Terminate) {
+            System.out.println("\nHospitalList: " + Hospital.map.keySet());
+            System.out.println("Select option :\n1.create New Hospital \n2.Add patient");
+            int option = scanner.nextInt();
+            switch (option) {
+                case 1:
+                    System.out.println("Enter Hospital Name");
+                    hospital = Hospital.createNewHospital(scanner.next());
+                    break;
             }
         }
     }
