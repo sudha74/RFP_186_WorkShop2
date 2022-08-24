@@ -18,6 +18,10 @@ public class HospitalMain {
                     System.out.println("Enter Hospital Name");
                     hospital = Hospital.createNewHospital(scanner.next());
                     break;
+                case 2:
+                    System.out.println("Enter add patient");
+                    hospital.addPatient();
+                    break;
             }
         }
     }
